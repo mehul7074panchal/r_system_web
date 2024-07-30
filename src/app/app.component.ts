@@ -1,39 +1,9 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
-import { Story } from './story.model';
-import { MatPaginator } from '@angular/material/paginator';
-import { StoryService } from './story.service';
-import { startWith, switchMap, catchError } from 'rxjs';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'title', 'url'];
-  stories: Story[] = [];
-  resultsLength = 200;
-  isLoadingResults = true;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-
-  constructor(private storyServie : StoryService, private changeDetectorRef: ChangeDetectorRef){}
-  ngAfterViewInit(): void {
-    this.paginator.page
-    .pipe(
-      startWith({}),
-      switchMap(() => {
-        this.isLoadingResults = true;
-        return this.storyServie!.getStories(
-          this.paginator.pageIndex +1,
-          this.paginator.pageSize
-        ).pipe(catchError(() =>[]));
-      })
-    )
-    .subscribe(data => {
-      this.isLoadingResults = false;
-        this.stories = data;
-       this.changeDetectorRef.detectChanges(); 
-    });
-  }
+export class AppComponent {
 }

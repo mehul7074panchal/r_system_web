@@ -7,7 +7,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Injectable({ providedIn: 'root' }) 
 export class StoryService{
-    href : string = 'https://localhost:7055/api';
+    href : string = 'http://localhost:5123/api';
     private destroyRef = inject(DestroyRef);
 
     constructor(private _httpClient: HttpClient) {}

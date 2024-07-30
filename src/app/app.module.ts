@@ -10,10 +10,12 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
+import { StoryListComponent } from './story-list/story-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StoryListComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
