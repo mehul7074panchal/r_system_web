@@ -8,6 +8,9 @@ import { of } from 'rxjs';
 import { StoryService } from '../story.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('StoryListComponent', () => {
   let component: StoryListComponent;
@@ -18,12 +21,17 @@ describe('StoryListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, 
-        HttpClientTestingModule, 
-        MatPaginatorModule, 
-        MatSortModule, 
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule,
+        MatPaginatorModule,
+        MatSortModule,
         MatTableModule,
-        MatProgressSpinnerModule],
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        MatInputModule,
+        NoopAnimationsModule
+      ],
       declarations: [StoryListComponent],
       providers: [StoryService],
     }).compileComponents();
@@ -46,7 +54,7 @@ describe('StoryListComponent', () => {
     tick();
     fixture.detectChanges();
     expect(spy).toHaveBeenCalled();
-    expect(component.stories.length).toBe(0);
+    expect(component.stories.data.length).toBe(0);
   }));
 
   it('should handle stories on pagination', fakeAsync(() => {
